@@ -17,11 +17,11 @@ INC_DIR=-I ./ \
 #---------------------
 # Source code files
 #---------------------
-LOCAL_SRC_FILES = example/MyAgent/src/agent.cpp \
-				  example/MyAgent/src/debug.cpp \
-				  example/MyAgent/src/rt_io.cpp \
-				  example/MyAgent/src/rt_os.cpp \
-				  example/MyAgent/src/cJSON.c   \
+LOCAL_SRC_FILES = example/MyAgent/src/agent/agent.cpp \
+				  example/MyAgent/src/agent/debug.cpp \
+				  example/MyAgent/src/OSRL/rt_io.cpp \
+				  example/MyAgent/src/OSRL/rt_os.cpp \
+				  example/MyAgent/src/utilze/cJSON.c   \
 
 # Library definition
 #---------------------
@@ -29,7 +29,8 @@ STD_LIB_PATH=$(COMPILER_ROOT)/x86_64-linux/usr/lib
 OEM_LIB_PATH=$(COMPILER_ROOT)/mdm9607/usr/lib
 USR_LIB_PATH=./libs
 
-USR_LIB=
+USR_LIB= \
+		example/MyAgent/libs/libvsim.a
 STD_LIB=\
 		$(OEM_LIB_PATH)/librt.so \
 
