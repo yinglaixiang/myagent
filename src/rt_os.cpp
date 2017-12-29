@@ -25,17 +25,17 @@
 #define rt_os_error(format,...)
 #endif
 
-bool rt_create_task(rt_task *task_id,rt_taskfun task_fun)
-{
-    s32 ret = 0;
-    ret = pthread_create(task_id,NULL,task_fun,NULL);
-    if(ret != 0)
-    {
-        rt_os_error("create task error!!\n");
-        return false;
-    }
-    return true;
-}
+// bool rt_create_task(rt_task *task_id,rt_taskfun task_fun)
+// {
+//     s32 ret = 0;
+//     ret = pthread_create(task_id,NULL,task_fun,NULL);
+//     if(ret != 0)
+//     {
+//         rt_os_error("create task error!!\n");
+//         return false;
+//     }
+//     return true;
+// }
 
 //
 bool rt_mutex_init(pthread_mutex_t *mutex)
@@ -50,7 +50,7 @@ bool rt_mutex_init(pthread_mutex_t *mutex)
     return true;
 }
 
-s32 rt_mutex_lock(pthread_mutex_t *mutex)
+bool rt_mutex_lock(pthread_mutex_t *mutex)
 {
     s32 ret = 0;
     ret = pthread_mutex_lock(mutex);
@@ -144,9 +144,10 @@ void *rt_os_memset(void *mem,s8 value,s32 len)
         return NULL;
     }
     return memset(mem,value,len);
+
 }
 
-void *rt_os_memcmp(void *mem_des,void *mem_src,s32 len)
+s32 rt_os_memcmp(void *mem_des,void *mem_src,s32 len)
 {
     if((NULL==mem_des)||(NULL==mem_src))
     {
@@ -163,7 +164,7 @@ size_t rt_os_strlen(void *string)
         rt_os_error("memory is empty!\n");
         return 0;
     }
-    return strlen(string);
+    return strlen((char *)string);
 }
 
 s8 *rt_os_strcpy(char* dest, const char *src)
@@ -183,7 +184,7 @@ s32 rt_os_strncmp(void *mem_des,void *mem_src,s32 len)
         //rt_os_error("memory is empty!\n");
         return false;
     }
-    return strncmp(mem_des,mem_src,len);
+    return strncmp((char *)mem_des,(char *)mem_src,len);
 }
 
 s32 rt_os_strcmp(void *mem_des,void *mem_src)
@@ -193,7 +194,7 @@ s32 rt_os_strcmp(void *mem_des,void *mem_src)
         rt_os_error("memory is empty!\n");
         return false;
     }
-    return strcmp(mem_des,mem_src);
+    return strcmp((char *)mem_des,(char *)mem_src);
 }
 
 void *rt_os_memcpy(void *mem_des,void *mem_src,s32 len)
@@ -226,7 +227,7 @@ s8 *rt_os_strstr(s8 *str1, const s8 *str2)
         rt_os_error("strstr is empty!\n");
         return NULL;
     }
-    return strstr(str1,str2);
+    return  strstr(str1,str2);
 }
 
 s8 *rt_os_strchr(s8 *str, const s8 chr)

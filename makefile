@@ -20,6 +20,7 @@ INC_DIR=-I ./ \
 LOCAL_SRC_FILES = example/MyAgent/src/agent.cpp \
 				  example/MyAgent/src/debug.cpp \
 				  example/MyAgent/src/rt_io.cpp \
+				  example/MyAgent/src/rt_os.cpp \
 				  example/MyAgent/src/cJSON.c   \
 
 # Library definition
