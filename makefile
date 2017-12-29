@@ -17,9 +17,11 @@ INC_DIR=-I ./ \
 #---------------------
 # Source code files
 #---------------------
-LOCAL_SRC_FILES = example/MyAgent/src/agent.cpp
+LOCAL_SRC_FILES = example/MyAgent/src/agent.cpp \
+				  example/MyAgent/src/debug.cpp \
+				  example/MyAgent/src/rt_io.cpp \
+				  example/MyAgent/src/cJSON.c   \
 
-#---------------------
 # Library definition
 #---------------------
 STD_LIB_PATH=$(COMPILER_ROOT)/x86_64-linux/usr/lib
